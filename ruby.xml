@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="ruby.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="ruby.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:r="http://www.tei-c.org/ns/proposal/ruby">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title/>
+      </titleStmt>
+      <publicationStmt>
+        <p>Free to anyone for any purpose.</p>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Invented based on examples in prior work on this ticket.</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div>
+        <p>All of these examples are based on a single very useful image of a real
+        text which appears in the Ruby proposal.</p>
+
+        <div>
+          <head>Simple example</head>
+          <p>Simple example taken from proposal document: billiard hall, with dual pronunciations
+            <q>biriādo</q> and <q>dakyūba</q>. I've added the <q>ba</q> to the end of the right-side
+            ruby text for simplicity, and used a supplied element to indicate that it's added.</p>
+          <p>First, the simplest possible setup: the entire word is glossed in one:</p>
+          <p style="writing-mode: vertical-rl"> 
+            <r:ruby>
+              <r:rb>打球場</r:rb>
+              <r:rt place="left">ビリアード</r:rt>
+              <r:rt place="right">ダキュウ<supplied>バ</supplied></r:rt>
+            </r:ruby> 
+          </p>
+        </div>
+        
+        <div>
+          <head>Character by character</head>
+          <p>Next, we divide the characters with explicit ruby elements. This seems awkward; another approach
+            would be to use pure contiguity to signal that every rt element applies to its preceding
+            rb element, but contiguity has drawbacks too.</p>
+          <p style="writing-mode: vertical-rl"> 
+            <r:ruby>
+              <r:rb>打</r:rb>
+              <r:rt place="left">ビリ</r:rt>
+              <r:rt place="right">ダ</r:rt>
+            </r:ruby> 
+            <r:ruby>
+              <r:rb>球</r:rb>
+              <r:rt place="left">アー</r:rt>
+              <r:rt place="right">キュウ</r:rt>
+            </r:ruby> 
+            <r:ruby>
+              <r:rb>場</r:rb>
+              <r:rt place="left">ド</r:rt>
+            </r:ruby> 
+          </p>
+        </div>
+          
+        <div>  
+          <head>Alternative segmentation</head>
+        <p>The actual example is intriguing in that the right-side ruby 
+          glosses apply to the first and second characters respectively, but
+          the left-side gloss applies to the whole word as a unit. We can 
+          capture this using nested ruby elements.
+        </p>
+        <p style="writing-mode: vertical-rl">
+          <r:ruby>
+            <r:rb>
+              <r:ruby>
+                <r:rb>打</r:rb>
+                <r:rt place="right">ダ</r:rt>
+              </r:ruby> 
+              <r:ruby>
+                <r:rb>球</r:rb>
+                <r:rt place="right">キュウ</r:rt>
+              </r:ruby>
+              場
+            </r:rb>
+            <r:rt place="left">ビリアード</r:rt>
+          </r:ruby>
+        </p>
+        </div>
+        
+        <div>
+          <head>Standoff ruby</head>
+          <p>Next, we use anchors and pointers to map the relationships. This is effective, but it
+          generates a lot of anchor elements.</p>
+          <p style="writing-mode: vertical-rl"> 
+            <r:ruby>
+              <r:rb><anchor xml:id="da"/>打<anchor xml:id="kyuu"/>球<anchor xml:id="ba"/>場<anchor
+                xml:id="owari"/></r:rb>
+              <r:rt place="left" from="#da" to="#owari">ビリアード</r:rt>
+              <r:rt place="right" from="#da" to="#kyuu">ダ</r:rt>
+              <r:rt place="right" from="#kyuu" to="#ba">キュウ</r:rt>
+            </r:ruby> 
+          </p>
+        </div>
+        
+        <div>
+          <head>Another standoff approach using regular elements</head>
+          <p>In place of anchors, we can use wrapping elements. This was not proposed by 
+          the group, but @sydb and @martindholmes think it's a good approach:</p>
+          <p style="writing-mode: vertical-rl"> 
+            <r:ruby>
+              <r:rb xml:id="dakyuuba"><c xml:id="da">打</c><c xml:id="kyuu">球</c>場</r:rb>
+              <r:rt place="left" target="#dakyuuba">ビリアード</r:rt>
+              <r:rt place="right" target="#da">ダ</r:rt>
+              <r:rt place="right" target="#kyuu">キュウ</r:rt>
+            </r:ruby> 
+          </p>
+        </div>
+        
+        <div>
+          <head>Spans via anchors</head>
+          <p>Another approach is to use anchors with no @xml:id to make parallel structures from which
+            the relationships can be inferred. This will work as long as there is only one ruby text sequence, or
+            where there are two or more, there are no internal differences in segmentation between them. 
+            The second rt element simply ignores the final character.
+          </p>
+          
+          <p style="writing-mode: vertical-rl"> 
+            <r:ruby>
+              <r:rb>打<anchor/>球<anchor/>場</r:rb>
+              <r:rt place="left">ビリ<anchor/>アー<anchor/>ド</r:rt>
+              <r:rt place="right">ダ<anchor/>キュウ<anchor/></r:rt>
+            </r:ruby> 
+          </p>
+        </div>
+      </div>
+    </body>
+  </text>
+</TEI>
