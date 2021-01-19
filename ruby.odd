@@ -106,7 +106,7 @@
     <text>
     <body>
       <div type="section">
-        <head>Summary</head>
+        <head>Summary from original proposal</head>
         <p xml:lang="en" corresp="#n" xml:id="p">The ruby gloss, or
         rubi, or furigana, is a device for giving guidance on
         phonation, as well as presenting another reading for the text,
@@ -133,6 +133,57 @@
         この提案では、実例をもとに符号化の例を検討し、台湾の注音符号に
         及ぶ。</p>
       </div>
+      
+      <div>
+        <head>Rough draft of proposed Guidelines section</head>
+        
+        <div>
+          <head>Ruby Annotations</head>
+          
+          <p>The word <mentioned>ruby</mentioned> (or <mentioned>rubi</mentioned>) refers
+          to a particular method of glossing short runs of text which is common in East Asian scripts.
+          In horizontally-oriented text, ruby annotations typically appear above the text being 
+          glossed, while in vertical runs of text they may appear to the left or right, or both, 
+          also oriented vertically.  An English example of a ruby annotation might look like this:
+            
+          </p>
+          <figure><graphic width="10rem" url="Images/rbTEI.png" mimeType="image/png"/></figure>
+          
+          <p>In Japanese, furigana (振り仮名) ruby annotations are often used to provide pronunciation 
+            guidance for readers; characters from the largely phonetic hiragana or katakana syllabaries
+            accompany Chinese characters, like this:
+          </p>
+          
+          <figure><graphic width="22rem" url="Images/rbNhkEasy.png" mimeType="image/png"/>
+            <head>The first line of a news story from NHK News Web Easy intended for Japanese
+            learners, in which every Chinese character has a ruby gloss.</head>
+          </figure>
+          
+          <p>Pinyin ruby annotations are also used in Chinese to provide pronunciation guidance,
+            and Zhuyin (注音) phonetic symbols (commonly known as <mentioned>bopomofo</mentioned> are 
+            used in Taiwan for the same purpose.</p>
+          
+          <p>The TEI schema provides many different ways of encoding glosses and annotations, from the
+          simple and flexible <gi>note</gi> element to a native implementation of the  Web Annotation
+          Data Model (<ptr target="#SASOann"/>). However, ruby is a particular, distinct, and widely-used 
+            form of annotation that appears in script, print, calligraphy, and web pages, and the TEI therefore 
+            provides specific  elements for it:
+          
+          <specList>
+            <specDesc key="ruby"/>
+            <specDesc key="rb"/>
+            <specDesc key="rt"/>
+          </specList>
+            The <gi>rt</gi> element also has <att>place</att>:
+            
+            <specList>
+              <specDesc key="att.placement" atts="place"/>
+            </specList>
+          </p>
+        </div>
+        
+      </div>
+      
     </body>
     <back>
       <div>
