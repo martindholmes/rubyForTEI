@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- $Id: ruby.odd 3426 2021-01-08 23:51:50Z syd $ -->
+<?xml-model href="http://www.tei-c.org/Vault/P5/3.6.0/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://www.tei-c.org/Vault/P5/3.6.0/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
   <teiHeader>
     <fileDesc>
@@ -24,7 +26,7 @@
         </respStmt>
       </titleStmt>
       <publicationStmt>
-        <ab>Intended for internal TEI use.</ab>
+        <publisher>TEI</publisher>
         <availability>
           <licence target="https://creativecommons.org/licenses/by-sa/4.0/">
             <choice>
@@ -32,6 +34,7 @@
               <expan>Attribution-ShareAlike 4.0 International</expan>
             </choice>
           </licence>
+          <ab>Intended for internal TEI use.</ab>
         </availability>
       </publicationStmt>
       <sourceDesc>
@@ -132,166 +135,168 @@
       </div>
     </body>
     <back>
-      <schemaSpec
+      <div>
+        <schemaSpec
           xmlns:sch="http://purl.oclc.org/dsdl/schematron" prefix="r_"
           xmlns:r="http://www.tei-c.org/ns/proposal/ruby" ident="ruby"
           source="tei:4.1.0" start="TEI div p ab" >
-        <desc>From proposal, then tweaked</desc>
+          <desc>From proposal, then tweaked</desc>
+  
+          <moduleRef key="tei"/>                              <!-- required -->
+          <moduleRef key="core"/>                             <!-- required -->
+          <moduleRef key="analysis"/>
+          <moduleRef key="certainty"/>
+          <moduleRef key="corpus"/>
+          <moduleRef key="dictionaries"/>
+          <moduleRef key="drama"/>
+          <moduleRef key="figures"/>
+          <moduleRef key="gaiji"/>
+          <moduleRef key="header"/>                           <!-- required -->
+          <moduleRef key="iso-fs"/>
+          <moduleRef key="linking"/>
+          <moduleRef key="msdescription"/>
+          <moduleRef key="namesdates"/>
+          <moduleRef key="nets"/>
+          <moduleRef key="spoken"/>
+          <moduleRef key="textcrit"/>
+          <moduleRef key="textstructure"/>                    <!-- required -->
+          <moduleRef key="transcr"/>
+          <moduleRef key="verse"/>
+          
+          <elementSpec ident="ruby" ns="http://www.tei-c.org/ns/proposal/ruby" mode="add">
+            <desc versionDate="2020-02-28" xml:lang="en">contains a
+            passage of text along with its associated ruby gloss.</desc>
+            <classes>
+              <memberOf key="att.global"/>
+              <memberOf key="att.typed"/>
+              <memberOf key="model.phrase"/>
+            </classes>
+            <content>
+              <elementRef key="rb" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="rt" minOccurs="1" maxOccurs="unbounded"/>
+            </content>
+            <!-- Obviously need <exemplum>s here :-) -->
+          </elementSpec>
+  
+          <elementSpec ident="rt" ns="http://www.tei-c.org/ns/proposal/ruby" mode="add">
+            <desc versionDate="2020-02-28" xml:lang="en">contains a ruby
+            text, an annotation closely associated with a passage of the
+            main text.</desc>
+            <classes>
+              <memberOf key="att.global"/>
+              <memberOf key="att.typed"/>
+              <memberOf key="att.placement"/>
+            </classes>
+            <content>
+              <alternate minOccurs="1" maxOccurs="unbounded">
+                <classRef key="macro.phraseSeq"/>
+                <classRef key="model.segLike"/>
+              </alternate>
+            </content>
+  	  <attList>
+  	    <attDef ident="target" usage="opt">
+  	      <desc versionDate="2021-01-08" xml:lang="en">supplies a pointer to the
+  	      base being glossed by this ruby text</desc>
+  	      <datatype><dataRef key="teidata.pointer"/></datatype>
+  	      <constraintSpec scheme="schematron" ident="rt-target-not-span">
+                  <!-- Note: this constraint should not be necessary, as
+                       the desired semantics should be something we
+                       could describe in PureODD using attList/@org. But
+                       I don’t think we can. —Syd -->
+  		<desc>Enforce that <emph>either</emph>
+  		<att>target</att> or both <att>from</att> and
+  		<att>to</att> (or none) are used, but not
+  		<att>target</att> in combination with either
+  		<att>from</att> or <att>to</att>.</desc>
+  		<constraint>
+  		  <sch:report test="../@from | ../@to">When target= is
+  		  present, neither from= nor to= should be.</sch:report>
+  		</constraint>
+  	      </constraintSpec>
+  	      <remarks>
+  		<p>Should point to a single <gi>rb</gi> or an element
+  		that is inside an <gi>rb</gi>. To refer to multiple
+  		base characters at once use <att>from</att> and
+  		<att>to</att>.</p>
+  	      </remarks>
+  	    </attDef>
+  	    <attDef ident="from" usage="opt" mode="add">
+  	      <desc>points to the starting point of the span of text
+  	      being glossed.</desc>
+  	      <datatype>
+  		<dataRef key="teidata.pointer"/>
+  	      </datatype>
+  	      <constraintSpec scheme="schematron" ident="rt-from">
+                  <!-- Note: this constraint should not be necessary, as
+                       the desired semantics should be something we
+                       could describe in PureODD using attList/@org. But
+                       I don’t think we can. —Syd -->
+                  <desc>Enforce the presence of <att>to</att> iff there
+                  is a <att>from</att>.</desc>
+                  <constraint>
+                    <sch:assert test="../@to" >When from= is present, the to=
+                    attribute of <sch:name/> is required.</sch:assert>
+                  </constraint>
+                </constraintSpec>
+              </attDef>
+              <attDef ident="to" usage="opt" mode="add">
+                <desc>points to the ending point of the span of text
+                being glossed.</desc>
+                <datatype>
+                  <dataRef key="teidata.pointer"/>
+                </datatype>
+  	      <constraintSpec scheme="schematron" ident="rt-to">
+                  <!-- Note: this constraint should not be necessary, as
+                       the desired semantics should be something we
+                       could describe in PureODD using attList/@org. But
+                       I don’t think we can. —Syd -->
+                  <desc>Enforce the presence of <att>from</att> iff there
+                  is a <att>to</att>.</desc>
+                  <constraint>
+                    <sch:assert test="../@from" >When to= is present, the from=
+                    attribute of <sch:name/> is required.</sch:assert>
+                  </constraint>
+                </constraintSpec>
+              </attDef>
+            </attList>
+          </elementSpec>
+  
+          <elementSpec ident="rb" ns="http://www.tei-c.org/ns/proposal/ruby" mode="add">
+            <desc versionDate="2020-02-28" xml:lang="en">contains the
+            annotation portion of a ruby gloss.</desc>
+            <classes>
+              <memberOf key="att.global"/>
+              <memberOf key="att.typed"/>
+            </classes>
+            <content>
+              <alternate minOccurs="1" maxOccurs="unbounded">
+                <classRef key="macro.phraseSeq"/>
+                <classRef key="model.segLike"/>
+              </alternate>
+            </content>
+  	</elementSpec>
+  
+  	<elementSpec ident="w" module="analysis" mode="change">
+  	  <content>
+  	    <alternate minOccurs="0" maxOccurs="unbounded">
+  	      <textNode/>
+  	      <classRef key="model.gLike"/>
+  	      <elementRef key="seg"/>
+  	      <elementRef key="w"/>
+  	      <elementRef key="m"/>
+  	      <elementRef key="c"/>
+  	      <elementRef key="pc"/>
+  	      <elementRef key="ruby"/>
+  	      <classRef key="model.global"/>
+  	      <classRef key="model.lPart"/>
+  	      <classRef key="model.hiLike"/>
+  	      <classRef key="model.pPart.edit"/>
+  	    </alternate>
+  	  </content>
+  	</elementSpec>
 
-        <moduleRef key="tei"/>                              <!-- required -->
-        <moduleRef key="core"/>                             <!-- required -->
-        <moduleRef key="analysis"/>
-        <moduleRef key="certainty"/>
-        <moduleRef key="corpus"/>
-        <moduleRef key="dictionaries"/>
-        <moduleRef key="drama"/>
-        <moduleRef key="figures"/>
-        <moduleRef key="gaiji"/>
-        <moduleRef key="header"/>                           <!-- required -->
-        <moduleRef key="iso-fs"/>
-        <moduleRef key="linking"/>
-        <moduleRef key="msdescription"/>
-        <moduleRef key="namesdates"/>
-        <moduleRef key="nets"/>
-        <moduleRef key="spoken"/>
-        <moduleRef key="textcrit"/>
-        <moduleRef key="textstructure"/>                    <!-- required -->
-        <moduleRef key="transcr"/>
-        <moduleRef key="verse"/>
-        
-        <elementSpec ident="ruby" ns="http://www.tei-c.org/ns/proposal/ruby" mode="add">
-          <desc versionDate="2020-02-28" xml:lang="en">contains a
-          passage of text along with its associated ruby gloss.</desc>
-          <classes>
-            <memberOf key="att.global"/>
-            <memberOf key="att.typed"/>
-            <memberOf key="model.phrase"/>
-          </classes>
-          <content>
-            <elementRef key="rb" minOccurs="1" maxOccurs="1"/>
-            <elementRef key="rt" minOccurs="1" maxOccurs="unbounded"/>
-          </content>
-          <!-- Obviously need <exemplum>s here :-) -->
-        </elementSpec>
-
-        <elementSpec ident="rt" ns="http://www.tei-c.org/ns/proposal/ruby" mode="add">
-          <desc versionDate="2020-02-28" xml:lang="en">contains a ruby
-          text, an annotation closely associated with a passage of the
-          main text.</desc>
-          <classes>
-            <memberOf key="att.global"/>
-            <memberOf key="att.typed"/>
-            <memberOf key="att.placement"/>
-          </classes>
-          <content>
-            <alternate minOccurs="1" maxOccurs="unbounded">
-              <classRef key="macro.phraseSeq"/>
-              <classRef key="model.segLike"/>
-            </alternate>
-          </content>
-	  <attList>
-	    <attDef ident="target" usage="opt">
-	      <desc versionDate="2021-01-08" xml:lang="en">supplies a pointer to the
-	      base being glossed by this ruby text</desc>
-	      <datatype><dataRef key="teidata.pointer"/></datatype>
-	      <constraintSpec scheme="schematron" ident="rt-target-not-span">
-                <!-- Note: this constraint should not be necessary, as
-                     the desired semantics should be something we
-                     could describe in PureODD using attList/@org. But
-                     I don’t think we can. —Syd -->
-		<desc>Enforce that <emph>either</emph>
-		<att>target</att> or both <att>from</att> and
-		<att>to</att> (or none) are used, but not
-		<att>target</att> in combination with either
-		<att>from</att> or <att>to</att>.</desc>
-		<constraint>
-		  <sch:report test="../@from | ../@to">When target= is
-		  present, neither from= nor to= should be.</sch:report>
-		</constraint>
-	      </constraintSpec>
-	      <remarks>
-		<p>Should point to a single <gi>rb</gi> or an element
-		that is inside an <gi>rb</gi>. To refer to multiple
-		base characters at once use <att>from</att> and
-		<att>to</att>.</p>
-	      </remarks>
-	    </attDef>
-	    <attDef ident="from" usage="opt" mode="add">
-	      <desc>points to the starting point of the span of text
-	      being glossed.</desc>
-	      <datatype>
-		<dataRef key="teidata.pointer"/>
-	      </datatype>
-	      <constraintSpec scheme="schematron" ident="rt-from">
-                <!-- Note: this constraint should not be necessary, as
-                     the desired semantics should be something we
-                     could describe in PureODD using attList/@org. But
-                     I don’t think we can. —Syd -->
-                <desc>Enforce the presence of <att>to</att> iff there
-                is a <att>from</att>.</desc>
-                <constraint>
-                  <sch:assert test="../@to" >When from= is present, the to=
-                  attribute of <sch:name/> is required.</sch:assert>
-                </constraint>
-              </constraintSpec>
-            </attDef>
-            <attDef ident="to" usage="opt" mode="add">
-              <desc>points to the ending point of the span of text
-              being glossed.</desc>
-              <datatype>
-                <dataRef key="teidata.pointer"/>
-              </datatype>
-	      <constraintSpec scheme="schematron" ident="rt-to">
-                <!-- Note: this constraint should not be necessary, as
-                     the desired semantics should be something we
-                     could describe in PureODD using attList/@org. But
-                     I don’t think we can. —Syd -->
-                <desc>Enforce the presence of <att>from</att> iff there
-                is a <att>to</att>.</desc>
-                <constraint>
-                  <sch:assert test="../@from" >When to= is present, the from=
-                  attribute of <sch:name/> is required.</sch:assert>
-                </constraint>
-              </constraintSpec>
-            </attDef>
-          </attList>
-        </elementSpec>
-
-        <elementSpec ident="rb" ns="http://www.tei-c.org/ns/proposal/ruby" mode="add">
-          <desc versionDate="2020-02-28" xml:lang="en">contains the
-          annotation portion of a ruby gloss.</desc>
-          <classes>
-            <memberOf key="att.global"/>
-            <memberOf key="att.typed"/>
-          </classes>
-          <content>
-            <alternate minOccurs="1" maxOccurs="unbounded">
-              <classRef key="macro.phraseSeq"/>
-              <classRef key="model.segLike"/>
-            </alternate>
-          </content>
-	</elementSpec>
-
-	<elementSpec ident="w" module="analysis" mode="change">
-	  <content>
-	    <alternate minOccurs="0" maxOccurs="unbounded">
-	      <textNode/>
-	      <classRef key="model.gLike"/>
-	      <elementRef key="seg"/>
-	      <elementRef key="w"/>
-	      <elementRef key="m"/>
-	      <elementRef key="c"/>
-	      <elementRef key="pc"/>
-	      <elementRef key="ruby"/>
-	      <classRef key="model.global"/>
-	      <classRef key="model.lPart"/>
-	      <classRef key="model.hiLike"/>
-	      <classRef key="model.pPart.edit"/>
-	    </alternate>
-	  </content>
-	</elementSpec>
-
-      </schemaSpec>
+        </schemaSpec>
+      </div>
     </back>
   </text>
 </TEI>
