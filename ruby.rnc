@@ -9,13 +9,13 @@ namespace teix = "http://www.tei-c.org/ns/Examples"
 namespace xi = "http://www.w3.org/2001/XInclude"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2021-01-15T17:36:11Z. .
+# Schema generated from ODD source 2021-01-22T16:30:07Z. .
 # TEI Edition: Version 4.1.0. Last updated on
 #	19th August 2020, revision b414ba550
 # TEI Edition Location: https://www.tei-c.org/Vault/P5/Version 4.1.0/
 #  From proposal, then tweaked 
 
-# [https://creativecommons.org/licenses/by-sa/4.0/] CC BY-SA 4.0 Attribution-ShareAlike 4.0 International
+# [https://creativecommons.org/licenses/by-sa/4.0/] CC BY-SA 4.0 Attribution-ShareAlike 4.0 International Intended for internal TEI use.
 r_macro.paraContent =
   (text
    | r_model.gLike
@@ -11044,6 +11044,7 @@ r_rt =
     r_att.global.attributes,
     r_att.typed.attributes,
     r_att.placement.attributes,
+    r_att.transcriptional.attributes,
     (
      ## supplies a pointer to the base being glossed by this ruby text
      attribute target { xsd:anyURI }?)
@@ -11058,7 +11059,7 @@ r_rt =
            sch:report [
              test = "../@from | ../@to"
              "When target= is\x{a}" ~
-             "		  present, neither from= nor to= should be."
+             "  		  present, neither from= nor to= should be."
            ]
            "\x{a}" ~
            "            "
@@ -11080,7 +11081,7 @@ r_rt =
            sch:assert [
              test = "../@to"
              "When from= is present, the to=\x{a}" ~
-             "                  attribute of "
+             "                    attribute of "
              sch:name [ ]
              " is required."
            ]
@@ -11104,7 +11105,7 @@ r_rt =
            sch:assert [
              test = "../@from"
              "When to= is present, the from=\x{a}" ~
-             "                  attribute of "
+             "                    attribute of "
              sch:name [ ]
              " is required."
            ]

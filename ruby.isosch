@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
    <title>ISO Schematron rules</title>
-   <!-- This file generated 2021-01-15T17:36:15Z by 'extract-isosch.xsl'. -->
+   <!-- This file generated 2021-01-22T16:30:11Z by 'extract-isosch.xsl'. -->
    <!-- ********************* -->
    <!-- namespaces, declared: -->
    <!-- ********************* -->
@@ -336,19 +336,19 @@ The @spanTo attribute of <name/> is required.</assert>
    <pattern id="schematron-constraint-ruby-rt-target-rt-target-not-span-55">
       <rule context="r:rt/@target">
          <report test="../@from | ../@to">When target= is
-		  present, neither from= nor to= should be.</report>
+  		  present, neither from= nor to= should be.</report>
       </rule>
    </pattern>
    <pattern id="schematron-constraint-ruby-rt-from-rt-from-56">
       <rule context="r:rt/@from">
          <assert test="../@to">When from= is present, the to=
-                  attribute of <name/> is required.</assert>
+                    attribute of <name/> is required.</assert>
       </rule>
    </pattern>
    <pattern id="schematron-constraint-ruby-rt-to-rt-to-57">
       <rule context="r:rt/@to">
          <assert test="../@from">When to= is present, the from=
-                  attribute of <name/> is required.</assert>
+                    attribute of <name/> is required.</assert>
       </rule>
    </pattern>
    <!-- *********** -->

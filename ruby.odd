@@ -237,6 +237,7 @@
               <memberOf key="att.global"/>
               <memberOf key="att.typed"/>
               <memberOf key="att.placement"/>
+	      <memberOf key="att.transcriptional"/>
             </classes>
             <content>
               <alternate minOccurs="1" maxOccurs="unbounded">
