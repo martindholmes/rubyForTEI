@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="ruby.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="ruby.isosch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0"
+  xmlns:r="http://www.tei-c.org/ns/proposal/ruby">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title/>
+      </titleStmt>
+      <publicationStmt>
+        <p>Free to anyone for any purpose.</p>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Invented based on examples in prior work on this ticket.</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div>
+        <p>Some room for examples based on images.</p>
+
+        <div>
+          <head>interspersed emphasis markers</head>
+          <p>note sure how to better deal with this, but overlap opportunities abound. shows use of gaiji with ruby.</p>
+          <pb n='三' facs="Images/26478854.jpg"/>
+          <!-- see https://www.w3.org/TR/css-text-decor-3/#propdef-text-emphasis-style -->
+          <ab rend='○' style='text-emphasis-style: open; writing-mode: vertical-rl'>
+          而較之可乎遂
+            <ruby>
+              <rb rend='○' style='text-emphasis-style: open'>書絶其纓</rb>
+              <rt>原<g>⿰言仐</g>令有以自
+              </rt>
+            </ruby>
+          </ab>
+          <!-- I m not to happy about having to split here, but i don't see another option. 
+    this is where overlap problem will occur if i want to mark the semantic unit of the text across 自容 or 纓尋 boundaries
+    -->
+          <ab style='writing-mode: vertical-rl'>
+            <ruby>
+              <rb>尋</rb>
+              <rt>容</rt>
+            </ruby>
+          荘王…
+          </ab>
+        </div>
+      </div>
+    </body>
+  </text>
+</TEI>
