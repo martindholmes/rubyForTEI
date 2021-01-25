@@ -28,20 +28,20 @@
           <!-- see https://www.w3.org/TR/css-text-decor-3/#propdef-text-emphasis-style -->
           <ab rend='○' style='text-emphasis-style: open; writing-mode: vertical-rl'>
           而較之可乎遂
-            <ruby>
-              <rb rend='○' style='text-emphasis-style: open'>書絶其纓</rb>
-              <rt>原<g>⿰言仐</g>令有以自
-              </rt>
-            </ruby>
+            <r:ruby>
+              <r:rb rend='○' style='text-emphasis-style: open'>書絶其纓</r:rb>
+              <r:rt>原<g>⿰言仐</g>令有以自
+              </r:rt>
+            </r:ruby>
           </ab>
           <!-- I m not to happy about having to split here, but i don't see another option. 
     this is where overlap problem will occur if i want to mark the semantic unit of the text across 自容 or 纓尋 boundaries
     -->
           <ab style='writing-mode: vertical-rl'>
-            <ruby>
-              <rb>尋</rb>
-              <rt>容</rt>
-            </ruby>
+            <r:ruby>
+              <r:rb>尋</r:rb>
+              <r:rt>容</r:rt>
+            </r:ruby>
           荘王…
           </ab>
         </div>
