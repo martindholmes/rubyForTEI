@@ -105,7 +105,7 @@
 
     <text>
     <body>
-      <div type="section">
+      <!--<div type="section">
         <head>Summary from original proposal</head>
         <p xml:lang="en" corresp="#n" xml:id="p">The ruby gloss, or
         rubi, or furigana, is a device for giving guidance on
@@ -132,7 +132,7 @@
         されることもあった。既存のHTMLでの符号化スキーマを参考にしつつ、
         この提案では、実例をもとに符号化の例を検討し、台湾の注音符号に
         及ぶ。</p>
-      </div>
+      </div>-->
       
       <div>
         <head>Rough draft of proposed Guidelines section</head>
@@ -160,7 +160,7 @@
           </figure>
           
           <p>Pinyin ruby annotations are also used in Chinese to provide pronunciation guidance,
-            and Zhuyin (注音) phonetic symbols (commonly known as <mentioned>bopomofo</mentioned> are 
+            and Zhuyin (注音) phonetic symbols (commonly known as <mentioned>bopomofo</mentioned>) are 
             used in Taiwan for the same purpose.</p>
           
           <p>The TEI schema provides many different ways of encoding glosses and annotations, from the
