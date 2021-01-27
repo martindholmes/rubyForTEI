@@ -180,6 +180,132 @@
               <specDesc key="att.placement" atts="place"/>
             </specList>
           </p>
+          
+          <p>In its simplest representation, a glossed form consists of an <gi>rb</gi> (ruby base) element containing the
+          base form, an <gi>rt</gi> (ruby text) element containing the gloss, and a <gi>ruby</gi> element which
+          wraps them together:
+          
+          <egXML xmlns="http://www.tei-c.org/ns/Examples">
+            <ruby>
+              <rb>大学</rb>
+              <rt place="above">だいがく</rt>
+            </ruby>
+          </egXML>
+            
+            Here the word <mentioned>大学</mentioned> (<mentioned>daigaku</mentioned> = university) is provided with
+            a phonation gloss in hiragana. Here the full gloss is applied to the complete word, but it might also be broken down
+            by character:
+            
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <ruby>
+                <rb>大</rb>
+                <rt place="above">だい</rt>
+              </ruby>
+                <ruby>
+                  <rb>学</rb>
+                  <rt place="above">がく</rt>
+                </ruby>
+            </egXML>
+            
+            Here is a similar example from Taiwan using bopomofo:
+            
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <ruby>
+                <rb>瓶</rb>
+                <rt place="right">ㄆㄧㄥˊ</rt>
+              </ruby>
+              <ruby>
+                <rb>子</rb>
+                <rt place="right">˙ㄗ</rt>
+              </ruby>
+            </egXML>
+            (pinyin <mentioned>píngzi</mentioned> = bottle, taken from 
+            <ref target="https://en.wikipedia.org/wiki/Bopomofo">Wikipedia</ref>.)
+          </p>
+          
+          <p>The same ruby base may be accompanied by more than one gloss. 
+            Here, the Japanese word <mentioned>打球場</mentioned> (dakyūba, or <gloss>billiard hall</gloss>)
+            is glossed with  two different pronunciations: <q>biriādo</q> (its English equivalent)
+            and <q>dakyū</q>, a phonation guide for the first two characters.
+          
+          <figure>
+            <head><mentioned>Billiard hall</mentioned> with two ruby glosses. 
+              <ref target="http://school.nijl.ac.jp/kindai/NIJL/NIJL-01116.html#37">国文学研究資料館所蔵：：英国／龍動新繁昌記</ref>.</head>
+            <graphic url="Images/billiardhall.jpg" width="149px" height="276px"/>
+          </figure>
+            
+            This example is intriguing in that the right-side ruby 
+            glosses apply to the first and second characters respectively, but
+            the left-side gloss applies to the whole word as a unit. We use this 
+            instance to exemplify multiple approaches to encoding the same
+          phenomena, which may be appropriate for different projects or 
+          editorial preferences. First, using the same segmentation approach 
+          as demonstrated for <mentioned>大学</mentioned> above, but 
+            with nesting:
+           
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <p style="writing-mode: vertical-rl">
+                [...]
+                <ruby>
+                  <rb>
+                    <ruby>
+                      <rb>打</rb>
+                      <rt place="right">ダ</rt>
+                    </ruby> 
+                    <ruby>
+                      <rb>球</rb>
+                      <rt place="right">キュウ</rt>
+                    </ruby>
+                    場
+                  </rb>
+                  <rt place="left">ビリアード</rt>
+                </ruby>
+                [...]
+              </p>
+            </egXML>
+            
+            Alternatively, we could use a standoff approach with anchors and 
+            pointers:
+            
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <p style="writing-mode: vertical-rl"> 
+                [...]
+                <ruby>
+                  <rb>
+                    <anchor xml:id="da"/>打
+                    <anchor xml:id="kyuu"/>球
+                     <anchor xml:id="ba"/>場
+                    <anchor  xml:id="owari"/>
+                  </rb>
+                  <rt place="left" from="#da" to="#owari">ビリアード</rt>
+                  <rt place="right" from="#da" to="#kyuu">ダ</rt>
+                  <rt place="right" from="#kyuu" to="#ba">キュウ</rt>
+                </ruby> 
+                [...]
+              </p>
+            </egXML>
+            
+            Alternatively, if the encoding itself already includes segmentation below
+            the word level, we can use the existing elements instead of adding <gi>anchor</gi>s:
+            
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <p style="writing-mode: vertical-rl"> 
+                [...]
+                <p style="writing-mode: vertical-rl"> 
+                  <ruby>
+                    <rb xml:id="dakyuuba"><c xml:id="da">打</c><c xml:id="kyuu">球</c><c>場</c></rb>
+                    <rt place="left" target="#dakyuuba">ビリアード</rt>
+                    <rt place="right" target="#da">ダ</rt>
+                    <rt place="right" target="#kyuu">キュウ</rt>
+                  </ruby> 
+                </p>
+                [...]
+              </p>
+            </egXML>
+            
+          </p>
+        
+          
         </div>
         
       </div>
