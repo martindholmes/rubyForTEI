@@ -1,0 +1,11 @@
+body.simple{
+  max-width: 50em; 
+  margin-left: auto; 
+  margin-right: auto;
+}
+div.figure{
+  text-align: center;
+  display: block;
+  border-width: 0;
+  margin: 1em auto;
+}

@@ -221,6 +221,12 @@
             </egXML>
             (pinyin <mentioned>píngzi</mentioned> = bottle, taken from 
             <ref target="https://en.wikipedia.org/wiki/Bopomofo">Wikipedia</ref>.)
+            
+            Where <att>place</att> is not provided, the default assumption is that the 
+            ruby gloss is <emph>above</emph> where the text is horizontal, and to the
+            <emph>right</emph> of the text where it is vertical. [NOTE: if proposed layout/@rubyPlace
+            is implemented, it should be explained here.]
+            
           </p>
           
           <p>The same ruby base may be accompanied by more than one gloss. 
@@ -254,11 +260,11 @@
                     </ruby> 
                     <ruby>
                       <rb>球</rb>
-                      <rt place="right">キュウ</rt>
+                      <rt place="right">キウ</rt>
                     </ruby>
                     場
                   </rb>
-                  <rt place="left">ビリアード</rt>
+                  <rt place="left">ビリヤード</rt>
                 </ruby>
                 [...]
               </p>
@@ -277,9 +283,9 @@
                      <anchor xml:id="ba"/>場
                     <anchor  xml:id="owari"/>
                   </rb>
-                  <rt place="left" from="#da" to="#owari">ビリアード</rt>
+                  <rt place="left" from="#da" to="#owari">ビリヤード</rt>
                   <rt place="right" from="#da" to="#kyuu">ダ</rt>
-                  <rt place="right" from="#kyuu" to="#ba">キュウ</rt>
+                  <rt place="right" from="#kyuu" to="#ba">キウ</rt>
                 </ruby> 
                 [...]
               </p>
@@ -294,9 +300,9 @@
                 <p style="writing-mode: vertical-rl"> 
                   <ruby>
                     <rb xml:id="dakyuuba"><c xml:id="da">打</c><c xml:id="kyuu">球</c><c>場</c></rb>
-                    <rt place="left" target="#dakyuuba">ビリアード</rt>
+                    <rt place="left" target="#dakyuuba">ビリヤード</rt>
                     <rt place="right" target="#da">ダ</rt>
-                    <rt place="right" target="#kyuu">キュウ</rt>
+                    <rt place="right" target="#kyuu">キウ</rt>
                   </ruby> 
                 </p>
                 [...]
