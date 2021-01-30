@@ -270,7 +270,7 @@
               </p>
             </egXML>
             
-            Alternatively, we could use a standoff approach with anchors and 
+            We could also use a standoff approach with anchors and 
             pointers:
             
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
