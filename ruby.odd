@@ -346,8 +346,9 @@
           <moduleRef key="verse"/>
           
           <elementSpec ident="ruby" ns="http://www.tei-c.org/ns/proposal/ruby" mode="add">
+            <gloss versionDate="2021-01-30">ruby container</gloss>
             <desc versionDate="2020-02-28" xml:lang="en">contains a
-            passage of text along with its associated ruby gloss(es).</desc>
+            passage of base text along with its associated ruby gloss(es).</desc>
             <classes>
               <memberOf key="att.global"/>
               <memberOf key="att.typed"/>
@@ -368,6 +369,7 @@
           </elementSpec>
   
           <elementSpec ident="rt" ns="http://www.tei-c.org/ns/proposal/ruby" mode="add">
+            <gloss versionDate="2021-01-30">ruby text</gloss>
             <desc versionDate="2020-02-28" xml:lang="en">contains a ruby
             text, an annotation closely associated with a passage of the
             main text.</desc>
@@ -386,7 +388,7 @@
           <attList>
             <attDef ident="target" usage="opt">
               <desc versionDate="2021-01-08" xml:lang="en">supplies a pointer to the
-              base being glossed by this ruby text</desc>
+              base being glossed by this ruby text.</desc>
               <datatype><dataRef key="teidata.pointer"/></datatype>
               <constraintSpec scheme="schematron" ident="rt-target-not-span">
                 <!-- Note: this constraint should not be necessary, as
@@ -406,13 +408,13 @@
               <remarks>
                 <p>Should point to a single <gi>rb</gi> or an element
                 that is inside an <gi>rb</gi>. To refer to multiple
-                base characters at once use <att>from</att> and
+                elements or text nodes at once use <att>from</att> and
                 <att>to</att>.</p>
               </remarks>
             </attDef>
             <attDef ident="from" usage="opt" mode="add">
               <desc>points to the starting point of the span of text
-              being glossed.</desc>
+                being glossed by this ruby text.</desc>
               <datatype>
                 <dataRef key="teidata.pointer"/>
               </datatype>
@@ -452,6 +454,7 @@
           </elementSpec>
   
           <elementSpec ident="rb" ns="http://www.tei-c.org/ns/proposal/ruby" mode="add">
+            <gloss versionDate="2021-01-30">ruby base</gloss>
             <desc versionDate="2020-02-28" xml:lang="en">contains the
             base text annotated by a ruby gloss.</desc>
             <classes>
