@@ -30,8 +30,8 @@
           <p style="writing-mode: vertical-rl"> 
             <r:ruby>
               <r:rb>打球場</r:rb>
-              <r:rt place="left">ビリアード</r:rt>
-              <r:rt place="right">ダキュウ<supplied>バ</supplied></r:rt>
+              <r:rt place="left">ビリヤード</r:rt>
+              <r:rt place="right">ダキウ<supplied>バ</supplied></r:rt>
             </r:ruby> 
           </p>
         </div>
@@ -49,8 +49,8 @@
             </r:ruby> 
             <r:ruby>
               <r:rb>球</r:rb>
-              <r:rt place="left">アー</r:rt>
-              <r:rt place="right">キュウ</r:rt>
+              <r:rt place="left">ヤー</r:rt>
+              <r:rt place="right">キウ</r:rt>
             </r:ruby> 
             <r:ruby>
               <r:rb>場</r:rb>
@@ -75,11 +75,11 @@
               </r:ruby> 
               <r:ruby>
                 <r:rb>球</r:rb>
-                <r:rt place="right">キュウ</r:rt>
+                <r:rt place="right">キウ</r:rt>
               </r:ruby>
               場
             </r:rb>
-            <r:rt place="left">ビリアード</r:rt>
+            <r:rt place="left">ビリヤード</r:rt>
           </r:ruby>
         </p>
         </div>
@@ -92,9 +92,9 @@
             <r:ruby>
               <r:rb><anchor xml:id="da"/>打<anchor xml:id="kyuu"/>球<anchor xml:id="ba"/>場<anchor
                 xml:id="owari"/></r:rb>
-              <r:rt place="left" from="#da" to="#owari">ビリアード</r:rt>
+              <r:rt place="left" from="#da" to="#owari">ビリヤード</r:rt>
               <r:rt place="right" from="#da" to="#kyuu">ダ</r:rt>
-              <r:rt place="right" from="#kyuu" to="#ba">キュウ</r:rt>
+              <r:rt place="right" from="#kyuu" to="#ba">キウ</r:rt>
             </r:ruby> 
           </p>
         </div>
@@ -105,10 +105,10 @@
           the group, but @sydb and @martindholmes think it's a good approach:</p>
           <p style="writing-mode: vertical-rl"> 
             <r:ruby>
-              <r:rb xml:id="dakyuuba"><c xml:id="da">打</c><c xml:id="kyuu">球</c>場</r:rb>
-              <r:rt place="left" target="#dakyuuba">ビリアード</r:rt>
-              <r:rt place="right" target="#da">ダ</r:rt>
-              <r:rt place="right" target="#kyuu">キュウ</r:rt>
+              <r:rb xml:id="dakyuuba"><c xml:id="c1">打</c><c xml:id="c2">球</c>場</r:rb>
+              <r:rt place="left" target="#dakyuuba">ビリヤード</r:rt>
+              <r:rt place="right" target="#c1">ダ</r:rt>
+              <r:rt place="right" target="#c2">キウ</r:rt>
             </r:ruby> 
           </p>
         </div>
@@ -124,8 +124,8 @@
           <p style="writing-mode: vertical-rl"> 
             <r:ruby>
               <r:rb>打<anchor/>球<anchor/>場</r:rb>
-              <r:rt place="left">ビリ<anchor/>アー<anchor/>ド</r:rt>
-              <r:rt place="right">ダ<anchor/>キュウ<anchor/></r:rt>
+              <r:rt place="left">ビリ<anchor/>ヤー<anchor/>ド</r:rt>
+              <r:rt place="right">ダ<anchor/>キウ<anchor/></r:rt>
             </r:ruby> 
           </p>
         </div>

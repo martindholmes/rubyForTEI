@@ -297,14 +297,13 @@
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <p style="writing-mode: vertical-rl"> 
                 [...]
-                <p style="writing-mode: vertical-rl"> 
                   <ruby>
-                    <rb xml:id="dakyuuba"><c xml:id="da">打</c><c xml:id="kyuu">球</c><c>場</c></rb>
+                    <rb xml:id="dakyuuba"><c xml:id="c1">打</c><c xml:id="c2">球</c><c>場</c></rb>
                     <rt place="left" target="#dakyuuba">ビリヤード</rt>
-                    <rt place="right" target="#da">ダ</rt>
-                    <rt place="right" target="#kyuu">キウ</rt>
+                    <rt place="right" target="#c1">ダ</rt>
+                    <rt place="right" target="#c2">キウ</rt>
                   </ruby> 
-                </p>
+                
                 [...]
               </p>
             </egXML>
