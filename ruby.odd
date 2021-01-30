@@ -348,7 +348,7 @@
           
           <elementSpec ident="ruby" ns="http://www.tei-c.org/ns/proposal/ruby" mode="add">
             <desc versionDate="2020-02-28" xml:lang="en">contains a
-            passage of text along with its associated ruby gloss.</desc>
+            passage of text along with its associated ruby gloss(es).</desc>
             <classes>
               <memberOf key="att.global"/>
               <memberOf key="att.typed"/>
@@ -447,7 +447,7 @@
   
           <elementSpec ident="rb" ns="http://www.tei-c.org/ns/proposal/ruby" mode="add">
             <desc versionDate="2020-02-28" xml:lang="en">contains the
-            annotation portion of a ruby gloss.</desc>
+            base text annotated by a ruby gloss.</desc>
             <classes>
               <memberOf key="att.global"/>
               <memberOf key="att.typed"/>
