@@ -9,7 +9,7 @@ namespace teix = "http://www.tei-c.org/ns/Examples"
 namespace xi = "http://www.w3.org/2001/XInclude"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-# Schema generated from ODD source 2021-01-22T16:30:07Z. .
+# Schema generated from ODD source 2021-01-30T14:51:48Z. .
 # TEI Edition: Version 4.1.0. Last updated on
 #	19th August 2020, revision b414ba550
 # TEI Edition Location: https://www.tei-c.org/Vault/P5/Version 4.1.0/
@@ -11032,9 +11032,17 @@ r_rhyme =
   }
 
 r_ruby =
-  ## contains a passage of text along with its associated ruby gloss.
+  ## contains a passage of text along with its associated ruby gloss(es).
   element r:ruby {
-    r_rb, r_rt+, r_att.global.attributes, r_att.typed.attributes, empty
+    r_rb,
+    (r_rt+)
+    >> sch:ns [
+         prefix = "r"
+         uri = "http://www.tei-c.org/ns/proposal/ruby"
+       ],
+    r_att.global.attributes,
+    r_att.typed.attributes,
+    empty
   }
 
 r_rt =
@@ -11059,7 +11067,7 @@ r_rt =
            sch:report [
              test = "../@from | ../@to"
              "When target= is\x{a}" ~
-             "  		  present, neither from= nor to= should be."
+             "                  present, neither from= nor to= should be."
            ]
            "\x{a}" ~
            "            "
@@ -11119,7 +11127,7 @@ r_rt =
   }
 
 r_rb =
-  ## contains the annotation portion of a ruby gloss.
+  ## contains the base text annotated by a ruby gloss.
   element r:rb {
     (r_macro.phraseSeq | r_model.segLike)+,
     r_att.global.attributes,

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
    <title>ISO Schematron rules</title>
-   <!-- This file generated 2021-01-22T16:30:11Z by 'extract-isosch.xsl'. -->
+   <!-- This file generated 2021-01-30T14:51:52Z by 'extract-isosch.xsl'. -->
    <!-- ********************* -->
    <!-- namespaces, declared: -->
    <!-- ********************* -->
    <ns prefix="tei" uri="http://www.tei-c.org/ns/1.0"/>
    <ns prefix="xs" uri="http://www.w3.org/2001/XMLSchema"/>
    <ns prefix="rng" uri="http://relaxng.org/ns/structure/1.0"/>
+   <ns prefix="r" uri="http://www.tei-c.org/ns/proposal/ruby"/>
    <!-- ********************* -->
    <!-- namespaces, implicit: -->
    <!-- ********************* -->
    <ns prefix="dcr" uri="http://www.isocat.org/ns/dcr"/>
-   <ns prefix="r" uri="http://www.tei-c.org/ns/proposal/ruby"/>
    <!-- ************ -->
    <!-- constraints: -->
    <!-- ************ -->
@@ -333,19 +333,19 @@ The @spanTo attribute of <name/> is required.</assert>
             <name/> must have at least one child add and at least one child del or surplus</assert>
       </rule>
    </pattern>
-   <pattern id="schematron-constraint-ruby-rt-target-rt-target-not-span-55">
+   <pattern id="schematron-constraint-ruby-rt-target-rt-target-not-span-56">
       <rule context="r:rt/@target">
          <report test="../@from | ../@to">When target= is
-  		  present, neither from= nor to= should be.</report>
+                  present, neither from= nor to= should be.</report>
       </rule>
    </pattern>
-   <pattern id="schematron-constraint-ruby-rt-from-rt-from-56">
+   <pattern id="schematron-constraint-ruby-rt-from-rt-from-57">
       <rule context="r:rt/@from">
          <assert test="../@to">When from= is present, the to=
                     attribute of <name/> is required.</assert>
       </rule>
    </pattern>
-   <pattern id="schematron-constraint-ruby-rt-to-rt-to-57">
+   <pattern id="schematron-constraint-ruby-rt-to-rt-to-58">
       <rule context="r:rt/@to">
          <assert test="../@from">When to= is present, the from=
                     attribute of <name/> is required.</assert>

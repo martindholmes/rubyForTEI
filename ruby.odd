@@ -49,29 +49,29 @@
 
     <revisionDesc>
       <change who="#SB" when="2021-01-15">
-	<list>
-	  <item>Martin Holmes and I noticed that <att>target</att> was
-	  inadvertently a required attribute of <gi>rt</gi>;
-	  fixed.</item>
-	  <item>Martin believes (strongly) that a <gi>ruby</gi> should
-	  have only 1 child <gi>rb</gi>, and I do not disagree
-	  (although I also do not claim sufficient expertise to be
-	  sure). Since it is <emph>far</emph> easier to change a “1
-	  only” rule to “many allowed” than vice-versa, we are limiting
-	  the content model to <code> rb, rt+ </code>.</item>
-	</list>
+        <list>
+          <item>Martin Holmes and I noticed that <att>target</att> was
+          inadvertently a required attribute of <gi>rt</gi>;
+          fixed.</item>
+          <item>Martin believes (strongly) that a <gi>ruby</gi> should
+          have only 1 child <gi>rb</gi>, and I do not disagree
+          (although I also do not claim sufficient expertise to be
+          sure). Since it is <emph>far</emph> easier to change a “1
+          only” rule to “many allowed” than vice-versa, we are limiting
+          the content model to <code> rb, rt+ </code>.</item>
+        </list>
       </change>      
       <change who="#SB" when="2021-01-08">
-	With Martin Holmes, added <att>target</att> to <gi>rt</gi> for
-	pointing to a container element rather than empty booundaries
-	(<gi>anchor</gi>), including constraint that <att>target</att>
-	not be used with either <att>from</att> or <att>to</att>. Also
-	changed the constraint specs to require <att>to</att> iff
-	<att>from</att>. (We already had constraint requiring
-	<att>from</att> iff <att>to</att>.)</change>
+        With Martin Holmes, added <att>target</att> to <gi>rt</gi> for
+        pointing to a container element rather than empty booundaries
+        (<gi>anchor</gi>), including constraint that <att>target</att>
+        not be used with either <att>from</att> or <att>to</att>. Also
+        changed the constraint specs to require <att>to</att> iff
+        <att>from</att>. (We already had constraint requiring
+        <att>from</att> iff <att>to</att>.)</change>
       <change who="#SB" when="2021-01-08">
-	Convinced by Martin Holmes to permit <gi>ruby</gi> inside
-	<gi>w</gi>, so changed the content model of <gi>w</gi>.
+        Convinced by Martin Holmes to permit <gi>ruby</gi> inside
+        <gi>w</gi>, so changed the content model of <gi>w</gi>.
       </change>
       <change who="#SB" when="2020-10-25">
         Inspired by the presentation by the authors at today’s
@@ -358,6 +358,13 @@
               <elementRef key="rb" minOccurs="1" maxOccurs="1"/>
               <elementRef key="rt" minOccurs="1" maxOccurs="unbounded"/>
             </content>
+            <constraintSpec scheme="schematron" ident="NShack">
+              <desc>The TEI Stylesheets that generate schematron-in-relaxng do
+              not (yet) generate namespaces; thus this hack.</desc>
+              <constraint>
+                <sch:ns prefix="r" uri="http://www.tei-c.org/ns/proposal/ruby"/>
+              </constraint>
+            </constraintSpec>
             <!-- Obviously need <exemplum>s here :-) -->
           </elementSpec>
   
@@ -369,7 +376,7 @@
               <memberOf key="att.global"/>
               <memberOf key="att.typed"/>
               <memberOf key="att.placement"/>
-	      <memberOf key="att.transcriptional"/>
+              <memberOf key="att.transcriptional"/>
             </classes>
             <content>
               <alternate minOccurs="1" maxOccurs="unbounded">
@@ -377,40 +384,40 @@
                 <classRef key="model.segLike"/>
               </alternate>
             </content>
-  	  <attList>
-  	    <attDef ident="target" usage="opt">
-  	      <desc versionDate="2021-01-08" xml:lang="en">supplies a pointer to the
-  	      base being glossed by this ruby text</desc>
-  	      <datatype><dataRef key="teidata.pointer"/></datatype>
-  	      <constraintSpec scheme="schematron" ident="rt-target-not-span">
-                  <!-- Note: this constraint should not be necessary, as
-                       the desired semantics should be something we
-                       could describe in PureODD using attList/@org. But
-                       I don’t think we can. —Syd -->
-  		<desc>Enforce that <emph>either</emph>
-  		<att>target</att> or both <att>from</att> and
-  		<att>to</att> (or none) are used, but not
-  		<att>target</att> in combination with either
-  		<att>from</att> or <att>to</att>.</desc>
-  		<constraint>
-  		  <sch:report test="../@from | ../@to">When target= is
-  		  present, neither from= nor to= should be.</sch:report>
-  		</constraint>
-  	      </constraintSpec>
-  	      <remarks>
-  		<p>Should point to a single <gi>rb</gi> or an element
-  		that is inside an <gi>rb</gi>. To refer to multiple
-  		base characters at once use <att>from</att> and
-  		<att>to</att>.</p>
-  	      </remarks>
-  	    </attDef>
-  	    <attDef ident="from" usage="opt" mode="add">
-  	      <desc>points to the starting point of the span of text
-  	      being glossed.</desc>
-  	      <datatype>
-  		<dataRef key="teidata.pointer"/>
-  	      </datatype>
-  	      <constraintSpec scheme="schematron" ident="rt-from">
+          <attList>
+            <attDef ident="target" usage="opt">
+              <desc versionDate="2021-01-08" xml:lang="en">supplies a pointer to the
+              base being glossed by this ruby text</desc>
+              <datatype><dataRef key="teidata.pointer"/></datatype>
+              <constraintSpec scheme="schematron" ident="rt-target-not-span">
+                <!-- Note: this constraint should not be necessary, as
+                     the desired semantics should be something we
+                     could describe in PureODD using attList/@org. But
+                     I don’t think we can. —Syd -->
+                <desc>Enforce that <emph>either</emph>
+                <att>target</att> or both <att>from</att> and
+                <att>to</att> (or none) are used, but not
+                <att>target</att> in combination with either
+                <att>from</att> or <att>to</att>.</desc>
+                <constraint>
+                  <sch:report test="../@from | ../@to">When target= is
+                  present, neither from= nor to= should be.</sch:report>
+                </constraint>
+              </constraintSpec>
+              <remarks>
+                <p>Should point to a single <gi>rb</gi> or an element
+                that is inside an <gi>rb</gi>. To refer to multiple
+                base characters at once use <att>from</att> and
+                <att>to</att>.</p>
+              </remarks>
+            </attDef>
+            <attDef ident="from" usage="opt" mode="add">
+              <desc>points to the starting point of the span of text
+              being glossed.</desc>
+              <datatype>
+                <dataRef key="teidata.pointer"/>
+              </datatype>
+              <constraintSpec scheme="schematron" ident="rt-from">
                   <!-- Note: this constraint should not be necessary, as
                        the desired semantics should be something we
                        could describe in PureODD using attList/@org. But
@@ -429,7 +436,7 @@
                 <datatype>
                   <dataRef key="teidata.pointer"/>
                 </datatype>
-  	      <constraintSpec scheme="schematron" ident="rt-to">
+              <constraintSpec scheme="schematron" ident="rt-to">
                   <!-- Note: this constraint should not be necessary, as
                        the desired semantics should be something we
                        could describe in PureODD using attList/@org. But
@@ -458,26 +465,26 @@
                 <classRef key="model.segLike"/>
               </alternate>
             </content>
-  	</elementSpec>
+        </elementSpec>
   
-  	<elementSpec ident="w" module="analysis" mode="change">
-  	  <content>
-  	    <alternate minOccurs="0" maxOccurs="unbounded">
-  	      <textNode/>
-  	      <classRef key="model.gLike"/>
-  	      <elementRef key="seg"/>
-  	      <elementRef key="w"/>
-  	      <elementRef key="m"/>
-  	      <elementRef key="c"/>
-  	      <elementRef key="pc"/>
-  	      <elementRef key="ruby"/>
-  	      <classRef key="model.global"/>
-  	      <classRef key="model.lPart"/>
-  	      <classRef key="model.hiLike"/>
-  	      <classRef key="model.pPart.edit"/>
-  	    </alternate>
-  	  </content>
-  	</elementSpec>
+        <elementSpec ident="w" module="analysis" mode="change">
+          <content>
+            <alternate minOccurs="0" maxOccurs="unbounded">
+              <textNode/>
+              <classRef key="model.gLike"/>
+              <elementRef key="seg"/>
+              <elementRef key="w"/>
+              <elementRef key="m"/>
+              <elementRef key="c"/>
+              <elementRef key="pc"/>
+              <elementRef key="ruby"/>
+              <classRef key="model.global"/>
+              <classRef key="model.lPart"/>
+              <classRef key="model.hiLike"/>
+              <classRef key="model.pPart.edit"/>
+            </alternate>
+          </content>
+        </elementSpec>
 
         </schemaSpec>
       </div>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:teix="http://www.tei-c.org/ns/Examples" xmlns:xlink="http://www.w3.org/1999/xlink" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" ns="http://www.tei-c.org/ns/1.0">
   <!--
-Schema generated from ODD source 2021-01-22T16:30:07Z. .
+Schema generated from ODD source 2021-01-30T14:51:48Z. .
 TEI Edition: Version 4.1.0. Last updated on
 	19th August 2020, revision b414ba550
 TEI Edition Location: https://www.tei-c.org/Vault/P5/Version 4.1.0/
@@ -17760,11 +17760,12 @@ Sample values include: 1] no; 2] yes; 3] weak; 4] strong</a:documentation>
   </define>
   <define name="r_ruby">
     <element name="ruby" ns="http://www.tei-c.org/ns/proposal/ruby">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a passage of text along with its associated ruby gloss.</a:documentation>
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a passage of text along with its associated ruby gloss(es).</a:documentation>
       <ref name="r_rb"/>
       <oneOrMore>
         <ref name="r_rt"/>
       </oneOrMore>
+      <sch:ns xmlns="http://www.tei-c.org/ns/1.0" xmlns:r="http://www.tei-c.org/ns/proposal/ruby" xmlns:sch="http://purl.oclc.org/dsdl/schematron" prefix="r" uri="http://www.tei-c.org/ns/proposal/ruby"/>
       <ref name="r_att.global.attributes"/>
       <ref name="r_att.typed.attributes"/>
       <empty/>
@@ -17792,7 +17793,7 @@ Sample values include: 1] no; 2] yes; 3] weak; 4] strong</a:documentation>
       <pattern xmlns="http://purl.oclc.org/dsdl/schematron" id="ruby-rt-target-rt-target-not-span-constraint-report-30">
         <rule context="r:rt/@target">
           <sch:report xmlns="http://www.tei-c.org/ns/1.0" xmlns:r="http://www.tei-c.org/ns/proposal/ruby" xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="../@from | ../@to">When target= is
-  		  present, neither from= nor to= should be.</sch:report>
+                  present, neither from= nor to= should be.</sch:report>
         </rule>
       </pattern>
       <optional>
@@ -17824,7 +17825,7 @@ Sample values include: 1] no; 2] yes; 3] weak; 4] strong</a:documentation>
   </define>
   <define name="r_rb">
     <element name="rb" ns="http://www.tei-c.org/ns/proposal/ruby">
-      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the annotation portion of a ruby gloss.</a:documentation>
+      <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the base text annotated by a ruby gloss.</a:documentation>
       <oneOrMore>
         <choice>
           <ref name="r_macro.phraseSeq"/>
