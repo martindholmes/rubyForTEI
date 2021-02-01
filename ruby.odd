@@ -165,7 +165,10 @@
           
           <p>The TEI schema provides many different ways of encoding glosses and annotations, from the
           simple and flexible <gi>note</gi> element to a native implementation of the  Web Annotation
-          Data Model (<ptr target="#SASOann"/>). However, ruby is a particular, distinct, and widely-used 
+            Data Model (<ptr target="#SASOann"/>), and the Unicode standard also provides a simple mechanism 
+            based on <ref target="https://www.unicode.org/versions/Unicode13.0.0/ch23.pdf">Annotation 
+              Characters</ref> to express the relationship between components of the main text stream and 
+            inline annotations. However, ruby is a particular, distinct, and widely-used 
             form of annotation that appears in script, print, calligraphy, and web pages, and the TEI therefore 
             provides specific  elements for it:
           
@@ -193,7 +196,7 @@
           </egXML>
             
             Here the word <mentioned>大学</mentioned> (<mentioned>daigaku</mentioned> = university) is provided with
-            a phonation gloss in hiragana. Here the full gloss is applied to the complete word, but it might also be broken down
+            a phonation gloss in hiragana. In the example above, the full gloss is applied to the complete word, but it might also be broken down
             by character:
             
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -231,7 +234,7 @@
           
           <p>The same ruby base may be accompanied by more than one gloss. 
             Here, the Japanese word <mentioned>打球場</mentioned> (dakyūba, or <gloss>billiard hall</gloss>)
-            is glossed with  two different pronunciations: <q>biriādo</q> (its English equivalent)
+            is glossed with  two different pronunciations: <q>biriyādo</q> (its English equivalent)
             and <q>dakyū</q>, a phonation guide for the first two characters.
           
           <figure>
